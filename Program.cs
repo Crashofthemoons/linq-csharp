@@ -152,7 +152,7 @@ namespace linq
                 Ref: https://stackoverflow.com/questions/7325278/group-by-in-linq
             */
 
-            var groupedByBank = customers.Where(c => c.Balance >= 1000000).GroupBy(
+            IEnumerable<GroupedMillionaires> groupedByBank = customers.Where(c => c.Balance >= 1000000).GroupBy(
                 p => p.Bank,  // Group banks
                 p => p.Name,  // by millionaire names
                 (bank, millionaires) => new GroupedMillionaires()
@@ -160,7 +160,7 @@ namespace linq
                     Bank = bank,
                     Millionaires = millionaires
                 }
-            ).ToList();
+            );
 
             foreach (var item in groupedByBank)
             {
